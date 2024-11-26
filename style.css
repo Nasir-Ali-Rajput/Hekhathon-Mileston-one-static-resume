@@ -1,67 +1,78 @@
-*{
-    
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
 
-body{
+body {
     width: 100%;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2%;
-    margin-top: auto;
-
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-.resumeDiv{
+.resumeDiv {
     width: 70%;
-    
     border: 2px solid lightgray;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden; /* Prevent content overflow */
 }
 
-header{
+header {
     width: 100%;
-    height: 160px;
+    height: auto;
     background-color: lavender;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px;
+    padding: 30px;
     margin-bottom: 30px;
     color: #799acc;
     font-size: medium;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
-header img{
+header img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    
+    flex-shrink: 0; /* Prevents image shrinking */
 }
 
-.content{
+.content {
     width: 100%;
-    margin-bottom: 30px; 
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap; /* Prevent stacking of sections */
+    margin-bottom: 30px;
 }
 
 .content aside {
-    width: 40%;
+    width: 30%;
     background-color: lavender;
-    padding-left: 30px; 
-    padding-bottom: 6%;
+    padding: 20px;
+    flex-shrink: 0; /* Prevents aside from shrinking */
 }
+
+.main-content {
+    width: 70%;
+    padding: 20px;
+}
+
 .about,
 .contact,
 .education,
 .skill,
 .language,
 .intrest,
-.reference{
+.reference {
     margin-bottom: 6%;
 }
 
@@ -72,99 +83,216 @@ header img{
 .language h2,
 .experience h2,
 .reference h2,
-.intrest h2{
-  border-bottom: 1px solid lightsteelblue;
-  margin-bottom: 20px;
-  padding-bottom: 3px;
-  color: #799acc;
-
+.intrest h2 {
+    border-bottom: 1px solid lightsteelblue;
+    margin-bottom: 20px;
+    padding-bottom: 3px;
+    color: #799acc;
 }
 
-
-.about{
+.about {
     text-align: justify;
     font-size: medium;
-
 }
 
-.education{
+.education {
     line-height: 20px;
 }
 
-.skill ul{
-    margin-left: 15px;
-}
-.language ul{
-    margin-left: 15px;
-}
-.intrest{
+.skill ul,
+.language ul,
+.intrest ul {
     margin-left: 15px;
 }
 
-.main-content{
-    padding-left: 50px;
-    padding-right: 50px;
-    width: 70%;
-}
-
-.experience-items{
+.experience-items {
     margin-bottom: 60px;
 }
-.experience-items p{
+
+.experience-items p {
     margin-bottom: 5px;
 }
 
-.experience-items ul{
+.experience-items ul {
     margin-left: 18px;
     margin-top: 15px;
 }
+
 .btnDiv {
-    width: 75%;
-    padding: 2%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
-.hide{
-    display: none;
+.btn {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 24px;
+    color: darkblue;
+    background: white;
+    cursor: pointer;
+    border: 2px solid lightsteelblue;
+    transition: all 0.3s ease;
 }
 
+.btn:hover {
+    background-color: lightsteelblue;
+    color: white;
+}
 
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Hide class for buttons */
+.hide {
+    display: none !important;
+}
+
+/* Print-specific styles */
 @media print {
-    .btnDiv{
-        display: none;
+    body {
+        padding: 0;
+        margin: 0;
+        font-size: 10pt; /* Ensure text fits on the page */
     }
-    
+
+    .btnDiv {
+        display: none; /* Hide buttons during print */
+    }
+
+    .resumeDiv {
+        width: 100%;
+        max-width: 800px; /* Restrict width for better print fit */
+        border: none; /* Remove border for clean print output */
+        margin: 0 auto; /* Center the resume on the page */
+    }
+
+    header {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .content {
+        display: block; /* Ensure content stacks properly */
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .content aside {
+        width: 100%; /* Make the aside content full width on print */
+        padding: 0;
+    }
+
+    .main-content {
+        width: 100%; /* Main content should take full width */
+        padding: 0;
+    }
+
+    /* Ensure sections have proper spacing */
+    .about,
+    .contact,
+    .education,
+    .skill,
+    .language,
+    .intrest,
+    .reference,
+    .experience-items {
+        margin-bottom: 20px;
+    }
+
+    .about h2,
+    .contact h2,
+    .education h2,
+    .skill h2,
+    .language h2,
+    .experience h2,
+    .reference h2,
+    .intrest h2 {
+        font-size: 14pt;
+        margin-bottom: 10px;
+    }
+
+    /* Consistent font sizes for print */
+    h1, h2, h3, p {
+        font-size: 12pt;
+    }
+
+    /* Improve the layout of lists */
+    .skill ul,
+    .language ul,
+    .intrest ul {
+        margin-left: 20px;
+    }
 }
 
-@media (max-width: 786px) {
-    .content{
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .resumeDiv {
+        width: 90%;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header img {
+        margin-bottom: 20px;
+    }
+
+    .main-content,
+    .content aside {
+        width: 100%; /* Ensure full width for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
         flex-direction: column;
     }
+
+    header img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .resumeDiv {
+        width: 100%;
+    }
 }
 
-.aside, .main-content {
-    width: 100%;
-}
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
 
-.btn{
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px;
-  border-radius: 24px ;
-  color: darkblue;
-  background: white;
-  cursor: pointer;
-  border-color: lightsteelblue;
+    header img {
+        width: 100px;
+        height: 100px;
+    }
 
-  &:hover{
-    background-color: lightsteelblue;
+    .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
 
-
-  }
-  &:active{
-    transform: scale(0.95);
-  } 
+    .resumeDiv {
+        width: 100%;
+        padding: 2%;
+    }
 }
